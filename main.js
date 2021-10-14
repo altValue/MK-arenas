@@ -2,8 +2,8 @@
 
 // fighters
 const player1 = {
-  name: 'Sub Zero',
-  hp: 100,
+  name: 'SUB ZERO',
+  hp: '80%',
   img: './assets/fighters/subzero.gif',
   weapon: ['ice shot', 'jump', 'fatality', 'slide', 'sinking down', 'brutality'],
 
@@ -12,8 +12,8 @@ const player1 = {
   }
 }
 const player2 = {
-  name: 'Liu Kang',
-  hp: 120,
+  name: 'LIU KANG',
+  hp: '95%',
   img: './assets/fighters/liukang.gif',
   weapon: ['legs boxing', 'jump', 'fatality', 'slide'],
 
@@ -44,7 +44,8 @@ const createPlayer = (fighterClass, fighter) => {
   $player.append($progressbar);
 
   const $life = createElement('div', ['life']);
-  $life.style.width = '100%';
+  $life.style.width = fighter.hp;
+
   const $name = createElement('div', ['name']);
   $name.innerText = fighter.name;
   $progressbar.append($life);
