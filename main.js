@@ -1,1 +1,68 @@
-console.log('Hello world!');
+/* ---MK - JSMarathon --- */
+
+// fighters
+const player1 = {
+  name: 'Sub Zero',
+  hp: 100,
+  img: './assets/fighters/subzero.gif',
+  weapon: ['ice shot', 'jump', 'fatality', 'slide', 'sinking down', 'brutality'],
+
+  attack: function() {
+    console.log(this.name + ' Fight...')
+  }
+}
+const player2 = {
+  name: 'Liu Kang',
+  hp: 120,
+  img: './assets/fighters/liukang.gif',
+  weapon: ['legs boxing', 'jump', 'fatality', 'slide'],
+
+  attack: function() {
+    console.log(this.name + ' Fight...')
+  }
+}
+
+
+// player element
+const createElement = (tagName, classNames, attribs) => {
+	const elem = document.createElement(tagName);
+
+	if (classNames) {
+		elem.classList.add(...classNames);
+	}
+	if (attribs) {
+		for (let attrib in attribs) {
+			elem[attrib] = attribs[attrib];
+		}
+	}
+	return elem;
+};
+
+const createPlayer = (fighterClass, fighter) => {
+  const $player = createElement('div', [fighterClass]);
+  const $progressbar  = createElement('div', ['progressbar']);
+  $player.append($progressbar);
+
+  const $life = createElement('div', ['life']);
+  $life.style.width = '100%';
+  const $name = createElement('div', ['name']);
+  $name.innerText = fighter.name;
+  $progressbar.append($life);
+  $progressbar.append($name);
+
+  const $character = createElement('div', ['character']);
+  $player.append($character);
+
+  $img = createElement('img', ['fighterImg'], {
+    src: fighter.img,
+    alt: fighter.name
+  })
+  $character.append($img);
+
+  return $player;
+};
+
+
+const $arenas = document.querySelector('.arenas');
+$arenas.append(createPlayer('player1', player1));
+$arenas.append(createPlayer('player2', player2));
