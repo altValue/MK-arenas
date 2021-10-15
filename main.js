@@ -24,20 +24,6 @@ const player2 = {
 
 
 // player element
-const createElement = (tagName, classNames, attribs) => {
-	const elem = document.createElement(tagName);
-
-	if (classNames) {
-		elem.classList.add(...classNames);
-	}
-	if (attribs) {
-		for (let attrib in attribs) {
-			elem[attrib] = attribs[attrib];
-		}
-	}
-	return elem;
-};
-
 const createPlayer = (fighterClass, fighter) => {
   const $player = createElement('div', [fighterClass]);
   const $progressbar  = createElement('div', ['progressbar']);
@@ -54,7 +40,7 @@ const createPlayer = (fighterClass, fighter) => {
   const $character = createElement('div', ['character']);
   $player.append($character);
 
-  $img = createElement('img', ['fighterImg'], {
+  const $img = createElement('img', ['fighterImg'], {
     src: fighter.img,
     alt: fighter.name
   })
@@ -63,7 +49,21 @@ const createPlayer = (fighterClass, fighter) => {
   return $player;
 };
 
+const createElement = (tagName, classNames, attribs) => {
+	const elem = document.createElement(tagName);
 
+	if (classNames) {
+		elem.classList.add(...classNames);
+	}
+	if (attribs) {
+		for (let attrib in attribs) {
+			elem[attrib] = attribs[attrib];
+		}
+	}
+	return elem;
+};
+
+// render
 const $arenas = document.querySelector('.arenas');
 $arenas.append(createPlayer('player1', player1));
 $arenas.append(createPlayer('player2', player2));
