@@ -66,7 +66,6 @@ const createElement = (tagName, classNames, attribs) => {
 	return $elem;
 };
 
-
 // check winner
 const theWinnerIs = (name) => {
   let $winTitle = createElement('div', ['winTitle'])
@@ -88,9 +87,8 @@ const touch = () => {
 // click handler. lives remover
 const livesRemover = player => {
   let lifeLine = document.querySelector('.player' + player.id + ' .life')
-  let rnd = Math.ceil(Math.random() * 20)
 
-  player.hp -= rnd
+  player.hp -= randomizer()
   lifeLine.style.width = player.hp + '%'
 
   if (player.hp < 0) {
@@ -108,12 +106,18 @@ const livesRemover = player => {
   }
 };
 
+// randomizer
+const randomizer = () => {
+  let rnd = Math.ceil(Math.random() * 20)
+
+  return rnd
+}
+
 // add Event Listener
 $randmBtn.addEventListener('click', function() {
   livesRemover(player1);
   livesRemover(player2);
 });
-
 
 // render
 $arenas.append(createPlayer(player1));
